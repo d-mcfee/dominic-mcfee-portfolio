@@ -1,89 +1,572 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <img src="Me.jpg" width="150">
-  <title>Dominic McFee | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dominic McFee | IT Infrastructure & Systems Portfolio</title>
+  <meta name="description" content="Dominic McFee — IT Infrastructure & Systems Professional. Virtualization, backup & DR, ERP/SQL reporting, multi-site operations." />
+
+  <!-- Optional: modern font (safe to use on GitHub Pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f5f5f5;
-      color: #333;
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --faint: rgba(255,255,255,0.55);
+      --line: rgba(255,255,255,0.12);
+      --brand: #6ea8ff;
+      --brand2:#7cf2c7;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1100px;
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 30px;
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(110,168,255,0.22), transparent 60%),
+        radial-gradient(1000px 600px at 90% 10%, rgba(124,242,199,0.16), transparent 60%),
+        radial-gradient(900px 600px at 60% 110%, rgba(110,168,255,0.10), transparent 60%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 72px; }
+
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 16px;
+      position: sticky; top: 0;
+      padding: 14px 0;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,18,32,0.70), rgba(11,18,32,0.0));
+      z-index: 20;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 700; letter-spacing: 0.2px;
+    }
+    .brand-badge{
+      width: 34px; height:34px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(110,168,255,0.95), rgba(124,242,199,0.85));
+      box-shadow: 0 10px 30px rgba(110,168,255,0.25);
+    }
+    .navlinks{ display:flex; gap: 14px; flex-wrap: wrap; justify-content:flex-end; }
+    .navlinks a{
+      font-size: 13px; color: var(--muted);
+      padding: 8px 10px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border: 1px solid transparent;
     }
-    h1, h2 {
-      color: #222;
+    .navlinks a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.05);
     }
-    .section {
-      margin-bottom: 30px;
+
+    /* Hero */
+    .hero{
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(500px 200px at 30% 0%, rgba(110,168,255,0.25), transparent 60%),
+        radial-gradient(400px 220px at 80% 10%, rgba(124,242,199,0.16), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position: relative;
+      display:grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 22px;
+      padding: 28px;
+      align-items: center;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size: 12px; color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 6px rgba(124,242,199,0.10);
+    }
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+    .cta{
+      display:flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn.primary{
+      border-color: rgba(110,168,255,0.45);
+      background: linear-gradient(135deg, rgba(110,168,255,0.25), rgba(124,242,199,0.16));
+    }
+
+    /* Photo card (moved into the body/hero) */
+    .photo-card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.04);
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .photo{
+      width: 160px; height:160px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+      background: rgba(255,255,255,0.06);
+    }
+    .photo-meta{
+      text-align:center;
+    }
+    .photo-meta .name{ font-weight: 700; margin:0; }
+    .photo-meta .loc{ margin:4px 0 0; font-size: 13px; color: var(--muted); }
+
+    /* Sections */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    .card h2{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .card p{ margin: 0; color: var(--muted); }
+    .pill-row{
+      display:flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 12px;
+    }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    /* Metrics */
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .metric{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-sm);
+      padding: 12px 12px;
+    }
+    .metric .val{
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .metric .lab{
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Projects */
+    .section-title{
+      margin-top: 28px;
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .section-title h3{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.25px;
+    }
+    .section-title span{
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .projects{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+    .project{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding: 16px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .project h4{
+      margin: 10px 0 6px;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+    .project p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .project ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .project li{ margin: 6px 0; }
+    .tagline{
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(110,168,255,0.30);
+      background: rgba(110,168,255,0.10);
+      padding: 6px 10px;
+      border-radius: 999px;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Inline SVG icons */
+    .ico{ width:18px; height:18px; display:inline-block; vertical-align: middle; opacity: 0.92; }
+    .ico-lg{ width:22px; height:22px; }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .projects{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .metrics{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav{ position: relative; }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Dominic McFee</h1>
-    <p><strong>IT Infrastructure & Systems Professional</strong></p>
-
-    <div class="section">
-      <h2>About Me</h2>
-      <p>
-        IT professional with 10+ years of experience supporting high-availability
-        manufacturing and business environments. Specialized in virtualization,
-        infrastructure stability, backup & recovery, ERP systems, and SQL reporting.
-      </p>
+  <div class="wrap">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-badge"></div>
+        <div>Dominic McFee</div>
+      </div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#strengths">Strengths</a>
+        <a href="#projects">Projects</a>
+        <a href="#tech">Tech</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Core Strengths</h2>
-      <ul>
-        <li>Infrastructure & Network Management</li>
-        <li>Virtualization & Server Modernization</li>
-        <li>Backup & Disaster Recovery (Veeam)</li>
-        <li>ERP Systems & SQL Reporting</li>
-        <li>Multi-site IT Operations</li>
-      </ul>
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker"><span class="dot"></span> IT Infrastructure & Systems Professional</div>
+          <h1>Reliable, production-ready IT that keeps operations moving.</h1>
+          <p class="subtitle">
+            10+ years supporting high-availability manufacturing and business environments — virtualization,
+            backup & disaster recovery, ERP/SQL reporting, and multi-site infrastructure.
+            Focused on uptime, cost control, and practical outcomes.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="Dominic_McFee_Resume.pdf" target="_blank" rel="noopener">
+              <!-- icon: download -->
+              <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 3v10m0 0l4-4m-4 4l-4-4M5 17v3h14v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download Resume
+            </a>
+            <a class="btn" href="https://www.linkedin.com" target="_blank" rel="noopener">
+              <!-- icon: link -->
+              <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              LinkedIn
+            </a>
+            <a class="btn" href="#contact">
+              <!-- icon: mail -->
+              <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Contact
+            </a>
+          </div>
+
+          <div class="metrics" aria-label="highlights">
+            <div class="metric">
+              <div class="val">250+</div>
+              <div class="lab">Users supported</div>
+            </div>
+            <div class="metric">
+              <div class="val">3</div>
+              <div class="lab">Locations managed</div>
+            </div>
+            <div class="metric">
+              <div class="val">30%</div>
+              <div class="lab">Hardware reduction</div>
+            </div>
+            <div class="metric">
+              <div class="val">24×7</div>
+              <div class="lab">Manufacturing uptime</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo inside body/hero -->
+        <aside class="photo-card">
+          <!-- Upload your image to the repo and name it: profile.jpg -->
+          <img class="photo" src="profile.jpg" alt="Dominic McFee headshot" />
+          <div class="photo-meta">
+            <p class="name">Dominic McFee</p>
+            <p class="loc">Norton Shores, MI • Open to remote</p>
+          </div>
+          <div class="pill-row" style="justify-content:center;">
+            <span class="pill">Virtualization</span>
+            <span class="pill">Backup & DR</span>
+            <span class="pill">ERP / SQL</span>
+            <span class="pill">Networking</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TWO-UP CARDS -->
+    <div class="grid" id="strengths">
+      <div class="card">
+        <h2>
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none"><path d="M12 2l9 4v6c0 5-3.8 9.7-9 10-5.2-.3-9-5-9-10V6l9-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          Core Strengths
+        </h2>
+        <p>Hands-on infrastructure ownership with business-first delivery.</p>
+        <div class="pill-row">
+          <span class="pill">Infrastructure & Network Mgmt</span>
+          <span class="pill">VMware / Server Modernization</span>
+          <span class="pill">Office 365 / AD</span>
+          <span class="pill">Veeam Backup & Recovery</span>
+          <span class="pill">Multi-site Operations</span>
+          <span class="pill">Troubleshooting & Root Cause</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none"><path d="M12 8V4m0 0L8 8m4-4 4 4M6 14v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Executive-Ready Outcomes
+        </h2>
+        <p>Impact framed in cost, uptime, and operational efficiency.</p>
+        <ul>
+          <li>Virtualized legacy servers to reduce hardware footprint and simplify lifecycle management.</li>
+          <li>Established backup/recovery confidence with consistent, successful restores.</li>
+          <li>Stabilized ERP environment and delivered SQL-based reporting to business teams.</li>
+          <li>Enabled production-floor communications for critical equipment with minimal downtime.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Selected Achievements</h2>
-      <ul>
-        <li>Reduced server hardware footprint by 30% via VMware virtualization</li>
-        <li>Improved ERP uptime, reducing downtime by 20%</li>
-        <li>Maintained 100% successful backup recovery capability</li>
-        <li>Supported 250+ users across three locations</li>
-      </ul>
+    <!-- PROJECTS -->
+    <div class="section-title" id="projects">
+      <h3>Selected Projects</h3>
+      <span>Representative work — concise and outcome-focused</span>
     </div>
 
-    <div class="section">
-      <h2>Technology Snapshot</h2>
-      <p>
-        VMware ESXi | Windows Server | Office 365 | Active Directory |
-        Meraki | Ubiquiti | Barracuda | Veeam | SQL | ERP Systems
-      </p>
+    <div class="projects">
+      <div class="project">
+        <span class="tagline">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Infrastructure Modernization
+        </span>
+        <h4>Windows Server 2003 → VMware + Server 2019</h4>
+        <p>Modernized legacy infrastructure while minimizing operational disruption.</p>
+        <ul>
+          <li>Reduced physical server footprint by ~30% through virtualization.</li>
+          <li>Improved reliability and simplified patching/maintenance windows.</li>
+          <li>Standardized server environment for easier support and onboarding.</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <span class="tagline">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 6V4m0 2a6 6 0 1 0 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 12h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Backup & Disaster Recovery
+        </span>
+        <h4>Veeam Backup Strategy & Restore Readiness</h4>
+        <p>Designed for recoverability, not just backups.</p>
+        <ul>
+          <li>Maintained consistent restore capability with routine validation.</li>
+          <li>Improved confidence in RTO/RPO expectations for critical systems.</li>
+          <li>Streamlined recovery workflows for faster incident response.</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <span class="tagline">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          ERP / SQL Reporting
+        </span>
+        <h4>Operational Reporting for Finance, HR, Accounting</h4>
+        <p>Turned ERP data into actionable reporting with SQL exports.</p>
+        <ul>
+          <li>Reduced manual reporting time and improved visibility.</li>
+          <li>Delivered consistent extracts for cross-department decisions.</li>
+          <li>Supported ERP stability initiatives to reduce downtime (~20%).</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Contact</h2>
-      <p>
-        Norton Shores, MI<br>
-        dominic.mcfee@gmail.com
+    <!-- TECH -->
+    <div class="section-title" id="tech" style="margin-top:28px;">
+      <h3>Technology Snapshot</h3>
+      <span>Tools I’ve operated in production</span>
+    </div>
+
+    <div class="card">
+      <div class="pill-row">
+        <span class="pill">VMware ESXi</span>
+        <span class="pill">Windows Server</span>
+        <span class="pill">Office 365</span>
+        <span class="pill">Active Directory</span>
+        <span class="pill">Veeam</span>
+        <span class="pill">Meraki</span>
+        <span class="pill">Ubiquiti</span>
+        <span class="pill">Barracuda</span>
+        <span class="pill">SQL Management Studio</span>
+        <span class="pill">Sybase</span>
+        <span class="pill">Powershop ERP</span>
+        <span class="pill">Mitel IP Phones</span>
+        <span class="pill">Jira / Confluence</span>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section-title" id="contact" style="margin-top:28px;">
+      <h3>Contact</h3>
+      <span>Fastest ways to reach me</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none"><path d="M21 15.5a16.9 16.9 0 0 1-7 3.5 16.9 16.9 0 0 1-7-3.5V6a16.9 16.9 0 0 1 7-3.5A16.9 16.9 0 0 1 21 6v9.5Z" stroke="currentColor" stroke-width="2"/></svg>
+          Details
+        </h2>
         <p>
-  LinkedIn: <a href=https://www.linkedin.com/in/dominic-mcfee-4ba23350/>View Profile</a>
-</p>
-      <p>
-        <a href="Dominic McFee Resume.pdf" target="_blank">
-    Download My Resume
-      </p>
-  </a>
-      </p>
+          <strong>Norton Shores, MI</strong><br/>
+          Email: <a href="mailto:dominic.mcfee@gmail.com">dominic.mcfee@gmail.com</a><br/>
+          Phone: <a href="tel:+12312880157">(231) 288-0157</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Links
+        </h2>
+        <div class="cta" style="margin-top:10px;">
+          <!-- Replace linkedin URL with your real one -->
+          <a class="btn" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn primary" href="Dominic_McFee_Resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
+        </div>
+        <p style="margin-top:10px; color: var(--muted); font-size: 13px;">
+          Tip: paste this portfolio link on your resume + LinkedIn for quick access.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Dominic McFee</div>
+      <div style="color: var(--faint);">Built with GitHub Pages • Single-file, no build tools</div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
