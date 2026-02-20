@@ -69,10 +69,21 @@ body::before{
       font-weight: 700; letter-spacing: 0.2px;
     }
     .brand-badge{
-      width: 34px; height:34px; border-radius: 10px;
-      background: linear-gradient(135deg, rgba(110,168,255,0.95), rgba(124,242,199,0.85));
-      box-shadow: 0 10px 30px rgba(110,168,255,0.25);
-    }
+  width: 34px; height:34px;
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: rgba(255,255,255,0.92);
+
+  background: linear-gradient(135deg, rgba(110,168,255,0.85), rgba(124,242,199,0.65));
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
     .navlinks{ display:flex; gap: 14px; flex-wrap: wrap; justify-content:flex-end; }
     .navlinks a{
       font-size: 13px; color: var(--muted);
@@ -345,7 +356,7 @@ body::before{
     <!-- NAV -->
     <div class="nav">
       <div class="brand">
-        <div class="brand-badge"></div>
+        <div class="brand-badge">DM</div>
         <div>Dominic McFee</div>
       </div>
       <div class="navlinks">
