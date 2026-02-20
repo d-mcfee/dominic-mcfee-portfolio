@@ -30,19 +30,16 @@
 
     *{ box-sizing: border-box; }
     html,body{ height:100%; }
-    body{
-    margin:0;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color: var(--text);
-
-    background-attachment: fixed;
-    background:
-    radial-gradient(1400px 900px at 15% -10%, rgba(110,168,255,0.25), transparent 60%),
-    radial-gradient(1200px 800px at 85% 0%, rgba(124,242,199,0.18), transparent 65%),
-    radial-gradient(1000px 700px at 50% 120%, rgba(110,168,255,0.12), transparent 70%),
-    linear-gradient(180deg, #0b1220 0%, #0e1628 35%, #0b1220 100%);
-    }
-
+    body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(110,168,255,0.18), transparent 60%),
+    radial-gradient(1000px 700px at 80% 10%, rgba(124,242,199,0.12), transparent 60%);
+  pointer-events:none;
+  z-index:-1;
+}
     a{ color: inherit; text-decoration: none; }
     a:hover{ text-decoration: none; }
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 72px; }
